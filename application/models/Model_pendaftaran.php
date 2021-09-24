@@ -29,4 +29,14 @@ class Model_pendaftaran extends CI_Model{
         $this->db->join('users','pendaftaran.id_user = users.id_user');
         return $this->db->get();
     }
+
+    function getDataPendaftaranById($id){
+        $this->db->select('pendaftaran.id_pendaftaran, pendaftaran.tgl_pendaftaran, pendaftaran.nik, siswa.nama, users.id_user , program.nama_program, program.id_program, pendaftaran.saldo, pendaftaran.jt ');
+        $this->db->from('pendaftaran');
+        $this->db->join('program', 'pendaftaran.id_program = program.id_program');
+        $this->db->join('siswa','pendaftaran.nik = siswa.nik');
+        $this->db->join('users','pendaftaran.id_user = users.id_user');
+        $this->db->where('pendaftaran.id_pendaftaran',$id);
+        return $this->db->get();    
+    }
 }

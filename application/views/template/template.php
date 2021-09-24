@@ -150,7 +150,7 @@
                 </div>
                 <div class="dropdown-menu-columns">
                   <div class="dropdown-menu-column">
-                    <a class="dropdown-item" href="<?php echo base_url(); ?>assets/empty.html" >
+                    <a class="dropdown-item" href="<?php echo base_url(); ?>pembayaran" >
                       Data Pembayaran
                     </a>
                   </div>
