@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Waktu pembuatan: 24 Sep 2021 pada 14.58
--- Versi server: 10.4.17-MariaDB
--- Versi PHP: 8.0.2
+-- Host: localhost
+-- Waktu pembuatan: 24 Sep 2021 pada 17.21
+-- Versi server: 10.4.11-MariaDB
+-- Versi PHP: 7.4.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -50,13 +51,21 @@ INSERT INTO `diskon` (`id_diskon`, `nama`, `jenis`, `value_dis`) VALUES
 --
 
 CREATE TABLE `pembayaran` (
-  `id_pembayaran` varchar(5) NOT NULL,
+  `id_pembayaran` int(5) NOT NULL,
   `id_pendaftaran` varchar(10) NOT NULL,
   `saldo` int(11) NOT NULL,
-  `tgl_bayar` int(11) NOT NULL,
-  `created_by` varchar(5) NOT NULL DEFAULT '1',
+  `tgl_bayar` date NOT NULL DEFAULT current_timestamp(),
+  `created_by` varchar(5) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `pembayaran`
+--
+
+INSERT INTO `pembayaran` (`id_pembayaran`, `id_pendaftaran`, `saldo`, `tgl_bayar`, `created_by`, `created_at`) VALUES
+(3, '0920210002', 2000000, '2021-09-24', 'USR03', '2021-09-24 22:07:21'),
+(4, '0920210002', 5000000, '2021-09-24', 'USR03', '2021-09-24 22:15:56');
 
 -- --------------------------------------------------------
 
@@ -210,6 +219,16 @@ ALTER TABLE `siswa`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id_user`);
+
+--
+-- AUTO_INCREMENT untuk tabel yang dibuang
+--
+
+--
+-- AUTO_INCREMENT untuk tabel `pembayaran`
+--
+ALTER TABLE `pembayaran`
+  MODIFY `id_pembayaran` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
