@@ -1,6 +1,6 @@
 <form action="<?php echo base_url();?>siswa/simpansiswa" class="formSiswa" method="POST">
     <div class="form-group mb-3">
-        <input type="text" class="form-control" name="nik" maxlength="16" placeholder="NIK">
+        <input type="text" class="form-control" readonly value="<?php echo $siswa; ?>" name="nik" maxlength="16" placeholder="NIK">
     </div>
     <div class="form-group mb-3">
         <input type="text" class="form-control" name="nama" placeholder="Nama Lengkap">

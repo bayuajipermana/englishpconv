@@ -20,18 +20,20 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-6">
-                  <p class="h3">Company</p>
+                  <p class="h3">English Plus Conversation</p>
                   <address>
-                    Street Address<br>
-                    State, City<br>
-                    Region, Postal Code<br>
-                    ltd@example.com
+                    Perum Jatisari Indah<br>
+                    Blok A1 No 16, Mijen<br>
+                    0823-2923-2167 / 0857-1200-3037
                   </address>
                 </div>
                 <div class="col-6 text-right">
                   <p class="h3"><?php echo $pendaftaran[0]->nama ?></p>
                   <address>
-                    <?php echo $pendaftaran[0]->nik ?>
+                    <?php echo "ID : ".$pendaftaran[0]->nik ?><br>
+                    <?php echo "Tanggal : ".date('d-m-Y',strtotime($pendaftaran[0]->tgl_pendaftaran))?><br>
+                    <?php echo "Jatuh Tempo : ".date('d-m-Y',strtotime($pendaftaran[0]->jt))?><br>
+
                   </address>
                 </div>
                 <div class="col-12 my-5">

@@ -14,6 +14,14 @@ class Model_program extends CI_Model{
         }
     }
 
+    function getLastId(){
+        $this->db->select('id_program');
+        $this->db->from('program');
+        $this->db->order_by('id_program','desc');
+        $this->db->limit(1);
+        return $this->db->get();
+    }
+
     function getProgram($id_program){
         return $this->db->get_where('program', array('id_program' => $id_program));
     }

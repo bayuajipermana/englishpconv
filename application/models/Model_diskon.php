@@ -4,6 +4,14 @@ class Model_diskon extends CI_Model{
         return $this->db->get('diskon');
     }
 
+    function getLastId(){
+        $this->db->select('id_diskon');
+        $this->db->from('diskon');
+        $this->db->order_by('id_diskon','desc');
+        $this->db->limit(1);
+        return $this->db->get();
+    }
+
     function insertDiskon($data){
         $simpan = $this->db->insert('diskon',$data);
 

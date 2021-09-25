@@ -1,6 +1,6 @@
 <form action="<?php echo base_url();?>program/simpanprogram" class="formProgram" method="POST">
     <div class="form-group mb-3">
-        <input type="text" class="form-control" name="id_program" maxlength="5" placeholder="ID Program">
+        <input type="text" class="form-control" readonly value="<?php echo $program; ?>" name="id_program" maxlength="5" placeholder="ID Program">
     </div>
     <div class="form-group mb-3">
         <input type="text" class="form-control" name="nama_program" maxlength="50" placeholder="Nama Program">

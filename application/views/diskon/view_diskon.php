@@ -28,7 +28,7 @@
                             <td><center><?php echo $b->id_diskon; ?></center></td>
                             <td><center><?php echo $b->nama; ?></center></td>    
                             <td><center><?php echo $b->jenis; ?></center></td>
-                            <td><center><?php echo $b->value_dis; ?></center></td>
+                            <td><center><?php echo angka($b->value_dis); ?></center></td>
                             <td width="60px">
                                 <a href="#" data-id="<?php echo $b->id_diskon; ?>" class="btn btn-primary btn-pill fa fa-pencil edit"></a>   
                             </td>    

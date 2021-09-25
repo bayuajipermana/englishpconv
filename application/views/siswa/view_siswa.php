@@ -11,7 +11,7 @@
                     <thead class>
                         <tr>
                             <th width="30px"><center>No</center></th>
-                            <th><center>NIK</center></th>
+                            <th><center>ID Siswa</center></th>
                             <th><center>Nama Siswa</center></th>
                             <th><center>Nomor Hp</center></th>
                             <th><center>Nama Wali</center></th>

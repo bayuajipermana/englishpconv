@@ -13,10 +13,15 @@ class Program extends CI_Controller{
     }
     //load view program
     function inputprogram(){
-        $this->load->view('program/input_program');
+        $id_terakhir = $this->Model_program->getLastId()->row_array();
+        $nomorterakhir = $id_terakhir['id_program'];
+        $id_siswa = buatkode($nomorterakhir,'P', 4);
+        $data['program'] = $id_siswa;
+        $this->load->view('program/input_program',$data);
     }
     //proses insert db table program
     function simpanprogram(){
+    
        
     $id_program     = $this->input->post('id_program');
     $nama_program   = $this->input->post('nama_program');

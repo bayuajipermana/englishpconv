@@ -1,6 +1,6 @@
 <form action="<?php echo base_url();?>siswa/updatesiswa" class="formSiswa" method="POST">
     <div class="form-group mb-3">
-    <label class="form-label">NIK</label>  
+    <label class="form-label">ID Siswa</label>  
         <input type="text" readonly value="<?php echo $siswa['nik'] ?>" class="form-control" name="nik" placeholder="NIK">
     </div>
     <div class="form-group mb-3">

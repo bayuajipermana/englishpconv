@@ -60,7 +60,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <a href="." class="navbar-brand navbar-brand-autodark">
-          <img src="<?php echo base_url(); ?>assets/static/logo-white.svg" width="110" height="32" alt="Tabler" class="navbar-brand-image">
+          <h1 width="110" height="32" alt="Tabler" class="navbar-brand-text">EPC</h1>
         </a>
         <div class="navbar-nav flex-row d-lg-none">
           <div class="nav-item dropdown d-none d-md-flex mr-3">

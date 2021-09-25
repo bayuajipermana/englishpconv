@@ -11,6 +11,7 @@ class Pendaftaran extends CI_Controller{
     }
     //index page pendaftaran
     function index(){
+
         $data['pendaftaran'] = $this->Model_pendaftaran->getDataPendaftaran()->result();
         $this->template->load('template/template','pendaftaran/view_pendaftaran',$data);
     }
@@ -70,5 +71,11 @@ class Pendaftaran extends CI_Controller{
             redirect('pendaftaran/inputpendaftaran');
         }
     }
+
+    function detailpendaftaran(){
+        $id_pendaftaran = $this->uri->segment(3);
+        $data['pendaftaran'] = $this->Model_pembayaran->getDataPembayaranById($id_pendaftaran)->row_array();
+        $this->load->view('pendaftaran/detail_pendaftaran',$data);
+    }   
 }
 ?>

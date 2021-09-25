@@ -1,6 +1,6 @@
 <form action="<?php echo base_url();?>diskon/simpandiskon" class="formDiskon" method="POST">
     <div class="form-group mb-3">
-        <input type="text" class="form-control" name="id_diskon" maxlength="5" placeholder="ID Diskon">
+        <input type="text" class="form-control" name="id_diskon" readonly value="<?php echo $diskon; ?>" maxlength="5" placeholder="ID Diskon">
     </div>
     <div class="form-group mb-3">
         <input type="text" class="form-control" name="nama" maxlength="50" placeholder="Nama Program Diskon">
@@ -9,7 +9,6 @@
         <select name="jenis" class="form-select">
             <option value="">Jenis Diskon</option>
             <option value="potongan">Potongan Langsung</option>
-            <option value="persen">Persentase</option>
             <option value="admin">Bebas Biaya Admin</option>
         </select>
     </div>

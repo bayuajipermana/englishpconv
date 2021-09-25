@@ -7,7 +7,7 @@
   stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="9" cy="7" r="4" />
   <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /><path d="M16 11l2 2l4 -4" /></svg>
-  Selamat datang <b><?php echo ucwords($this->session->userdata('level'))." "; echo $this->session->userdata('nama'); ?></b> 
+  Selamat datang <b><?php echo ucwords($this->session->userdata('level'))." "; echo $this->session->userdata('nama');  ?></b> 
 </div>
 <div class="row">
   <div class="col-md-6 col-xl-3">
@@ -19,7 +19,7 @@
           <div class="font-weight-medium">
             Jumlah Siswa
           </div>
-          <div class="text-muted">90 Siswa</div>
+          <div class="text-muted"><?php echo $siswa[0]->c." Siswa" ; ?></div>
         </div>
       </div>
       </div>
