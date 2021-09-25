@@ -118,5 +118,16 @@ class Pembayaran extends CI_Controller{
         }
 
     }
+
+    function invoicePembayaran(){
+        $id_pembayaran = $this->input->get('id');
+        $id_pendaftaran = $this->input->get('id_pendaftaran');
+
+        $data['pembayaran'] = $this->Model_pembayaran->getDataPembayaranByid($id_pembayaran)->result();
+        $data['pendaftaran'] = $this->Model_pendaftaran->getDataPendaftaranById($id_pendaftaran)->result();
+
+        $this->template->load('template/template','pembayaran/invoice_pembayaran',$data);
+
+    }
 }
 ?>
