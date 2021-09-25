@@ -36,7 +36,7 @@
                                 <td><center><?php echo $b->nik; ?></a></center></td>
                                 <td><center><?php echo $b->nama; ?></center></td>    
                                 <td><center><?php echo $b->nama_program; ?></center></td>
-                                <td><center><?php echo angka($b->saldo); ?></center></td>
+                                <td><center><?php echo angka($b->saldo - $b->total_bayar); ?></center></td>
                                 <td><center>
                                         <?php 
                                             if($b->status){

@@ -4,6 +4,7 @@ class Pendaftaran extends CI_Controller{
         parent :: __construct();
         checklogin();
         $this->load->model('Model_pendaftaran');
+        $this->load->model('Model_pembayaran');
         $this->load->model('Model_siswa');  
         $this->load->model('Model_program');
         $this->load->model('Model_diskon');
@@ -44,17 +45,32 @@ class Pendaftaran extends CI_Controller{
         $saldo = $this->input->post('total-value');
         $id_user = $this->input->post('id_user');
 
+        $price = $this->input->post('b-price');
+        $diskon = $this->input->post('b-diskon');
+        $saldo_piutang = $price - $diskon;
+
         $data = array(
             'id_pendaftaran'        => $id_pendaftaran,
             'tgl_pendaftaran'       => $tgl_pendaftaran,
             'nik'                   => $nik,
             'id_program'            => $id_program,
             'jt'                    => $jatuhtempo,
-            'saldo'                 => $saldo,
+            'price'                 => $price,
+            'diskon'                => $diskon,
+            'saldo'                 => $saldo_piutang,
             'id_user'               => $id_user
         );
-
         $simpan = $this->Model_pendaftaran->dataPendaftaran($data);
+
+
+        $dp = $this->input->post('b-dp');
+        $data_pembayaran = array(
+            'id_pendaftaran'        => $id_pendaftaran,
+            'saldo'                 => $dp,
+            'tgl_bayar'             => $tgl_pendaftaran,
+            'created_by'            => $id_user,
+        );
+        $simpan = $this->Model_pembayaran->dataPembayaran($data_pembayaran);
         
         if($simpan == 1){
             $this->session->set_flashdata('msg','<div class="alert alert-success alert-dismissible" role="alert">
