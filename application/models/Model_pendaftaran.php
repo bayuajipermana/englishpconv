@@ -22,7 +22,7 @@ class Model_pendaftaran extends CI_Model{
     }
 
     function getDataPendaftaran(){
-        $this->db->select('pendaftaran.id_pendaftaran, pendaftaran.tgl_pendaftaran, pendaftaran.nik, siswa.nama, users.id_user , program.nama_program, pendaftaran.saldo, pendaftaran.jt ');
+        $this->db->select('pendaftaran.id_pendaftaran, pendaftaran.tgl_pendaftaran, pendaftaran.nik, siswa.nama, users.id_user , program.nama_program, pendaftaran.saldo, pendaftaran.jt, pendaftaran.status ');
         $this->db->from('pendaftaran');
         $this->db->join('program', 'pendaftaran.id_program = program.id_program');
         $this->db->join('siswa','pendaftaran.nik = siswa.nik');
@@ -38,5 +38,11 @@ class Model_pendaftaran extends CI_Model{
         $this->db->join('users','pendaftaran.id_user = users.id_user');
         $this->db->where('pendaftaran.id_pendaftaran',$id);
         return $this->db->get();    
+    }
+
+    function setLunas($id){
+        $this->db->set('status', '1');
+        $this->db->where('id_pendaftaran', $id);
+        $this->db->update('pendaftaran');
     }
 }

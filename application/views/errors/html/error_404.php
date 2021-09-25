@@ -1,64 +1,54 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
+<!doctype html>
+<!--
+* Tabler - Premium and Open Source dashboard template with responsive and high quality UI.
+* @version 1.0.0-alpha.14
+* @link https://tabler.io
+* Copyright 2018-2020 The Tabler Authors
+* Copyright 2018-2020 codecalm.net Paweł Kuna
+* Licensed under MIT (https://github.com/tabler/tabler/blob/master/LICENSE)
+-->
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<title>404 Page Not Found</title>
-<style type="text/css">
-
-::selection { background-color: #E13300; color: white; }
-::-moz-selection { background-color: #E13300; color: white; }
-
-body {
-	background-color: #fff;
-	margin: 40px;
-	font: 13px/20px normal Helvetica, Arial, sans-serif;
-	color: #4F5155;
-}
-
-a {
-	color: #003399;
-	background-color: transparent;
-	font-weight: normal;
-}
-
-h1 {
-	color: #444;
-	background-color: transparent;
-	border-bottom: 1px solid #D0D0D0;
-	font-size: 19px;
-	font-weight: normal;
-	margin: 0 0 14px 0;
-	padding: 14px 15px 10px 15px;
-}
-
-code {
-	font-family: Consolas, Monaco, Courier New, Courier, monospace;
-	font-size: 12px;
-	background-color: #f9f9f9;
-	border: 1px solid #D0D0D0;
-	color: #002166;
-	display: block;
-	margin: 14px 0 14px 0;
-	padding: 12px 10px 12px 10px;
-}
-
-#container {
-	margin: 10px;
-	border: 1px solid #D0D0D0;
-	box-shadow: 0 0 8px #D0D0D0;
-}
-
-p {
-	margin: 12px 15px 12px 15px;
-}
-</style>
-</head>
-<body>
-	<div id="container">
-		<h1><?php echo $heading; ?></h1>
-		<?php echo $message; ?>
-	</div>
-</body>
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Page 404 - Tabler - Premium and Open Source dashboard template with responsive and high quality UI.</title>
+    <!-- CSS files -->
+    <link href="./dist/css/tabler.min.css" rel="stylesheet"/>
+    <link href="./dist/css/tabler-flags.min.css" rel="stylesheet"/>
+    <link href="./dist/css/tabler-payments.min.css" rel="stylesheet"/>
+    <link href="./dist/css/tabler-vendors.min.css" rel="stylesheet"/>
+    <link href="./dist/css/demo.min.css" rel="stylesheet"/>
+    <style>
+      body {
+      	display: none;
+      }
+    </style>
+  </head>
+  <body class="antialiased border-top-wide border-primary d-flex flex-column">
+    <div class="flex-fill d-flex align-items-center justify-content-center">
+      <div class="container-tight py-6">
+        <div class="empty">
+          <div class="empty-header">404</div>
+          <p class="empty-title">Oops… You just found an error page</p>
+          <p class="empty-subtitle text-muted">
+            We are sorry but the page you are looking for was not found
+          </p>
+          <div class="empty-action">
+            <a href="<?php echo base_url() ?>Dashboard" class="btn btn-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><line x1="5" y1="12" x2="19" y2="12" /><line x1="5" y1="12" x2="11" y2="18" /><line x1="5" y1="12" x2="11" y2="6" /></svg>
+              Take me home
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Libs JS -->
+    <script src="./dist/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Tabler Core -->
+    <script src="./dist/js/tabler.min.js"></script>
+    <script>
+      document.body.style.display = "block"
+    </script>
+  </body>
 </html>

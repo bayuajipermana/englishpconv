@@ -2,6 +2,7 @@
 class Pendaftaran extends CI_Controller{
     function __construct(){
         parent :: __construct();
+        checklogin();
         $this->load->model('Model_pendaftaran');
         $this->load->model('Model_siswa');  
         $this->load->model('Model_program');
