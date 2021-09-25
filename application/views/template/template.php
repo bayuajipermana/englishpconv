@@ -168,7 +168,7 @@
               <div class="dropdown-menu">
                 <div class="dropdown-menu-columns">
                   <div class="dropdown-menu-column">
-                    <a class="dropdown-item" href="<?php echo base_url(); ?>assets/empty.html" >
+                    <a class="dropdown-item" href="<?php echo base_url(); ?>Reports/laporanPembayaran" >
                       Laporan Pembayaran
                     </a>
                   </div>
