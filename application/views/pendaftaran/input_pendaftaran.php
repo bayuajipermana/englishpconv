@@ -232,6 +232,19 @@
         </div>
     </div>
 </div>
+
+<div class="modal modal-blur fade" id="modalalert" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h1>Alert!</h1>
+                <p>Siswa <span id="alert-nama_siswa" style="font-weight:bold"></span> sudah pernah terdaftar pada program <span id="alert-nama_program" style="font-weight:bold"></span>. 
+                <br>Silakan pilih program yang lain.</p>
+                <button class="btn btn-primary" data-dismiss="modal">Oke</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
   	flatpickr(document.getElementById('tgl_pendaftaran'), {
@@ -310,6 +323,10 @@
         var nama_program= $(this).attr("data-namaprog");
         var harga = $(this).attr("data-harga");
 
+        var nik = $("#nik").val();
+
+        cekPendaftaran(nik, id_program);
+
         $("#b-price").val(harga);
 
         var formatnumber = numeral(harga).format('0,0');
@@ -358,6 +375,30 @@
 
         var formatnumber = numeral(total).format('0,0');
         $("#total").text(formatnumber);
+    }
+
+    function cekPendaftaran(nik,id_program){
+        $.ajax({
+            url : "cekPendaftaran",
+            type : "get",
+            data : {
+                nik : nik,
+                id_program : id_program
+            },
+            dataType : "JSON",
+            success : function(result){
+                if (!result.status) {
+                    $("#alert-nama_siswa").html(result.nama_siswa)
+                    $("#alert-nama_program").html(result.nama_program)
+                    $("#modalalert").modal('show')
+                    $("#id_program").val('');
+                    $("#nama_program").val('');
+                    $("#harga-diskon").val('');
+                    $("#total").text('');
+                }
+                
+            }
+        })
     }
 
 </script>

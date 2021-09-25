@@ -19,7 +19,7 @@
           <div class="font-weight-medium">
             Jumlah Siswa
           </div>
-          <div class="text-muted">90 Siswa</div>
+          <div class="text-muted"><?php echo $jml_siswa?> Siswa</div>
         </div>
       </div>
       </div>
@@ -33,7 +33,7 @@
           <div class="font-weight-medium">
             Pembayaran hari ini
           </div>
-          <div class="text-muted">Rp1.000.000</div>
+          <div class="text-muted">Rp <?php echo angka($total_pembayaran_harian[0]->saldo); ?></div>
         </div>
       </div>
       </div>
@@ -47,7 +47,7 @@
           <div class="font-weight-medium">
             Pembayaran bulan ini
           </div>
-          <div class="text-muted">Rp20.0000.0000</div>
+          <div class="text-muted">Rp <?php echo angka($total_pembayaran_bulanan[0]->saldo); ?></div>
         </div>
       </div>
       </div>
@@ -59,9 +59,9 @@
         </span>
         <div class="mr-3">
           <div class="font-weight-medium">
-            Siswa yang akan lulus
+            Siswa yang sudah lunas
           </div>
-          <div class="text-muted">40</div>
+          <div class="text-muted"><?php echo $jml_siswa_lunas ?></div>
         </div>
       </div>
       </div>

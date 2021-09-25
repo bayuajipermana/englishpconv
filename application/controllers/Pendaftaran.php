@@ -86,5 +86,29 @@ class Pendaftaran extends CI_Controller{
             redirect('pendaftaran/inputpendaftaran');
         }
     }
+
+    public function cekPendaftaran(){
+        $nik = $this->input->get('nik');
+        $id_program = $this->input->get('id_program');
+
+        $nama_siswa = $this->db->get_where('siswa',array('nik' => $nik))->result();
+        $data['nama_siswa'] = $nama_siswa[0]->nama;  
+        
+        $nama_program = $this->db->get_where('program',array('id_program' => $id_program))->result();
+        $data['nama_program'] = $nama_program[0]->nama_program;
+
+        $this->db->where('nik',$nik);
+        $this->db->where('id_program',$id_program);
+        $cek = $this->db->count_all_results('pendaftaran');
+
+        if ($cek > 0) {
+            $data['status'] = 0;
+        }else{
+            $data['status'] = 1;
+        }
+
+        echo json_encode($data);
+
+    }
 }
 ?>
