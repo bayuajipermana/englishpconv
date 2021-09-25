@@ -125,6 +125,7 @@ class Pembayaran extends CI_Controller{
 
         $data['pembayaran'] = $this->Model_pembayaran->getDataPembayaranByid($id_pembayaran)->result();
         $data['pendaftaran'] = $this->Model_pendaftaran->getDataPendaftaranById($id_pendaftaran)->result();
+        $data['totalbayar'] = $this->Model_pembayaran->getTotalBayar($id_pendaftaran)->result();
 
         $this->template->load('template/template','pembayaran/invoice_pembayaran',$data);
 

@@ -59,6 +59,14 @@
                   <td colspan="3" class="font-weight-bold text-uppercase text-right">Total</td>
                   <td class="font-weight-bold text-right"><?php echo angka($pendaftaran[0]->saldo) ?></td>
                 </tr>
+                <tr>
+                  <td colspan="3" class="font-weight-bold text-uppercase text-right">Paid off</td>
+                  <td class="font-weight-bold text-right"><?php echo angka($totalbayar[0]->saldo) ?></td>
+                </tr>
+                <tr>
+                  <td colspan="3" class="font-weight-bold text-uppercase text-right">Remaining</td>
+                  <td class="font-weight-bold text-right"><?php echo angka($pendaftaran[0]->saldo - $totalbayar[0]->saldo) ?></td>
+                </tr>
               </table>
               <p class="text-muted text-center mt-5">Thank you very much for doing business with us. We look forward to working with
                 you again!</p>
