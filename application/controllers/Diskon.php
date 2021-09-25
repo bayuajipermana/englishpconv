@@ -3,6 +3,7 @@ class Diskon extends CI_Controller{
      //constructor
      function __construct(){
         parent :: __construct();
+        checklogin();
         $this->load->model('Model_diskon');
     }
     //index page diskon

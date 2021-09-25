@@ -1,7 +1,7 @@
 <h2 class="page-title mb-3"> Edit Pembayaran </h2>
 <div><?php echo $this->session->flashdata('msg');?></div>
 <?php $tagihan = $pendaftaran[0]->saldo - $totalbayar[0]->saldo?>
-<form id="formpembayaran" method="POST" action="<?php echo base_url(); ?>pembayaran/insertpembayaran">
+<form id="formpembayaran" method="POST" action="<?php echo base_url(); ?>pembayaran/updatepembayaran/<?php echo $pembayaran[0]->id_pembayaran?>">
     <div class="row">
         <div class="col-md-5">
             <div class="card">
@@ -64,7 +64,7 @@
                     <div class="mr-3" style="width:100%">
                         <div class="form-group">
                             <label class="form-label" for="bayar">Bayar :</label>
-                            <input class="form-control" type="number" name="bayar" id="bayar" value="0">
+                            <input class="form-control" value="<?php echo $pembayaran[0]->saldo?>" type="number" name="bayar" id="bayar" value="0">
                         </div>
                     </div>
                 </div>

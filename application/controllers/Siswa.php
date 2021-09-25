@@ -3,6 +3,7 @@ class Siswa extends CI_Controller{
     //constructor
     function __construct(){
         parent :: __construct();
+        checklogin();
         $this->load->model('Model_siswa');
     }
     //index page siswa

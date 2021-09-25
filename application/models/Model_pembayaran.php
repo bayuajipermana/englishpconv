@@ -31,6 +31,10 @@ class Model_pembayaran extends CI_Model{
         return $this->db->get();
     }
 
+    function getDataPembayaranById($id){
+        return $this->db->get_where('pembayaran',array('id_pembayaran' => $id));
+        
+    }
     function getTotalBayar($id){
         $this->db->select_sum('saldo');
         $this->db->from('pembayaran');
