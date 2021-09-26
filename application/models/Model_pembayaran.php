@@ -41,4 +41,12 @@ class Model_pembayaran extends CI_Model{
         $this->db->where('id_pendaftaran',$id);
         return $this->db->get();
     }
+
+    function getTotalBayarSebelumnya($id_pendaftaran, $id_pembayaran){
+        $this->db->select_sum('saldo');
+        $this->db->from('pembayaran');
+        $this->db->where('id_pendaftaran',$id_pendaftaran);
+        $this->db->where('id_pembayaran <=',$id_pembayaran);
+        return $this->db->get();
+    }
 }
