@@ -19,7 +19,7 @@
           <div class="font-weight-medium">
             Jumlah Siswa
           </div>
-          <div class="text-muted"><?php echo $siswa[0]->c." Siswa" ; ?></div>
+          <div class="text-muted"><?php echo $jml_siswa?> Siswa</div>
         </div>
       </div>
       </div>
@@ -33,7 +33,7 @@
           <div class="font-weight-medium">
             Pembayaran hari ini
           </div>
-          <div class="text-muted">Rp1.000.000</div>
+          <div class="text-muted">Rp <?php echo angka($total_pembayaran_harian[0]->saldo); ?></div>
         </div>
       </div>
       </div>
@@ -47,26 +47,12 @@
           <div class="font-weight-medium">
             Pembayaran bulan ini
           </div>
-          <div class="text-muted">Rp20.0000.0000</div>
+          <div class="text-muted">Rp <?php echo angka($total_pembayaran_bulanan[0]->saldo); ?></div>
         </div>
       </div>
       </div>
   </div>
-  <div class="col-md-6 col-xl-3">
-    <div class="card card-sm">
-      <div class="card-body d-flex align-items-center">
-        <span class="bg-cyan text-white avatar mr-3"><svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="9" cy="7" r="4" /><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /><path d="M16 11h6m-3 -3v6" /></svg>
-        </span>
-        <div class="mr-3">
-          <div class="font-weight-medium">
-            Siswa yang akan lulus
-          </div>
-          <div class="text-muted">40</div>
-        </div>
-      </div>
-      </div>
-  </div>
-</div>
+  
 <div class="row mt-3">
   <div class="col-12">
     <div class="card">
@@ -74,8 +60,51 @@
         <h3 class="card-title">Grafik Penjualan</h3>
       </div>
       <div class="card-body">
-        <p></p>
+        <canvas id="myChart" width="auto" height="auto"></canvas>
       </div>
     </div>
   </div>
-</div>  
+</div>
+
+<script>
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: [
+          <?php
+              foreach($saldo_pembayaran_bulanan as $x){
+                echo $x -> bulan. ", ";
+              }
+          ?>
+        ],
+        datasets: [{
+            label: 'Pemasukan tahun 2021',
+            data: [
+                    <?php
+                        foreach($saldo_pembayaran_bulanan as $x){
+                          echo $x -> pemasukan. ", ";
+                        }
+                    ?>
+                  ],
+            
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>

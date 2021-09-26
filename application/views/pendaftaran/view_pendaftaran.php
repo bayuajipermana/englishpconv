@@ -31,12 +31,12 @@
                             ?>
                             <tr>
                                 <td><center><?php echo $no; ?></center></td>
-                                <td><center><a href="#" class="btn btn-sm btn-info"><?php echo $b->id_pendaftaran; ?></a></center></td>
+                                <td><center><?php echo $b->id_pendaftaran; ?></a></center></td>
                                 <td><center><?php echo $b->tgl_pendaftaran; ?></a></center></td>
                                 <td><center><?php echo $b->nik; ?></a></center></td>
                                 <td><center><?php echo $b->nama; ?></center></td>    
                                 <td><center><?php echo $b->nama_program; ?></center></td>
-                                <td><center><?php echo angka($b->saldo); ?></center></td>
+                                <td><center><?php echo angka($b->saldo - $b->total_bayar); ?></center></td>
                                 <td><center>
                                         <?php 
                                             if($b->status){
@@ -52,7 +52,7 @@
                                 <?php if(!$b->status){ ?>
                                     <a href="<?php echo base_url(); ?>pembayaran/inputpembayaran/<?php echo $b->id_pendaftaran?>" class="btn btn-sm btn-primary">LUNASI</a>   
                                 <?php }else{ ?>
-                                    <a href="#" class="btn btn-sm btn-primary">LUNASI</a>   
+                                    <a href="#" class="btn btn-sm btn-primary disabled">LUNASI</a>   
                                 <?php } ?>
                                 </center></td>    
                             </tr>

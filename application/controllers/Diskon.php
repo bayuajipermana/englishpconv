@@ -14,10 +14,18 @@ class Diskon extends CI_Controller{
     //load view diskon
     function inputdiskon(){
         $nomorterakhir = $this->Model_diskon->getLastId()->row_array();
-        $idterakhir = $nomorterakhir['id_diskon'];
-        $id_diskon = buatkode($idterakhir,'D',4);
-        $data['diskon'] = $id_diskon;
-        $this->load->view('diskon/input_diskon',$data);
+        if(isset($nomorterakhir)){
+            $idterakhir = $nomorterakhir['id_diskon'];
+            $id_diskon = buatkode($idterakhir,'D',4);
+            $data['diskon'] = $id_diskon;
+            $this->load->view('diskon/input_diskon',$data);
+        }else{
+            $idterakhir = 0;
+            $id_diskon = buatkode($idterakhir,'D',4);
+            $data['diskon'] = $id_diskon;
+            $this->load->view('diskon/input_diskon',$data);
+        }
+        
     }
     //proses insert db table diskon
     function simpandiskon(){

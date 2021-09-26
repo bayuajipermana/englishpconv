@@ -22,7 +22,7 @@ class Model_pendaftaran extends CI_Model{
     }
 
     function getDataPendaftaran(){
-        $this->db->select('pendaftaran.id_pendaftaran, pendaftaran.tgl_pendaftaran, pendaftaran.nik, siswa.nama, users.id_user , program.nama_program, pendaftaran.saldo, pendaftaran.jt, pendaftaran.status ');
+        $this->db->select('pendaftaran.id_pendaftaran, pendaftaran.tgl_pendaftaran, pendaftaran.nik, siswa.nama, users.id_user , program.nama_program, pendaftaran.saldo, pendaftaran.jt, pendaftaran.status, (SELECT sum(saldo) from pembayaran where id_pendaftaran = pendaftaran.id_pendaftaran) total_bayar ');
         $this->db->from('pendaftaran');
         $this->db->join('program', 'pendaftaran.id_program = program.id_program');
         $this->db->join('siswa','pendaftaran.nik = siswa.nik');
@@ -31,7 +31,7 @@ class Model_pendaftaran extends CI_Model{
     }
 
     function getDataPendaftaranById($id){
-        $this->db->select('pendaftaran.id_pendaftaran, pendaftaran.tgl_pendaftaran, pendaftaran.nik, siswa.nama, users.id_user , program.nama_program, program.id_program, pendaftaran.saldo, pendaftaran.jt ');
+        $this->db->select('pendaftaran.id_pendaftaran, pendaftaran.tgl_pendaftaran, pendaftaran.nik, siswa.nama, users.id_user , program.nama_program, program.id_program, pendaftaran.saldo, pendaftaran.jt, pendaftaran.price, pendaftaran.diskon ');
         $this->db->from('pendaftaran');
         $this->db->join('program', 'pendaftaran.id_program = program.id_program');
         $this->db->join('siswa','pendaftaran.nik = siswa.nik');

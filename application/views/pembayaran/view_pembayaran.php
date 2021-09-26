@@ -34,7 +34,7 @@
                             <td width="60px">
                             <center>
                                 <a href="<?php echo base_url(); ?>pembayaran/editpembayaran?id=<?php echo $b->id_pembayaran; ?>&id_pendaftaran=<?php echo $b->id_pendaftaran?>" class="btn btn-sm btn-primary btn-pill fa fa-pencil edit"></a>   
-                                <a href="<?php echo base_url(); ?>pembayaran/invoicePembayaran?id=<?php echo $b->id_pembayaran; ?>&id_pendaftaran=<?php echo $b->id_pendaftaran?>"  class="btn btn-sm btn-warning btn-pill fa fa-file"></a>   
+                                <a href="<?php echo base_url(); ?>pembayaran/invoicePembayaran?id=<?php echo $b->id_pembayaran; ?>&id_pendaftaran=<?php echo $b->id_pendaftaran?>&id_user=<?php echo $b->nama?>"  class="btn btn-sm btn-warning btn-pill fa fa-file"></a>   
                             </center>
                             </td>    
                         </tr>

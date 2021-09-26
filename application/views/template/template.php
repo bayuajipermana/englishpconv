@@ -47,7 +47,8 @@
     <script src="<?php echo base_url(); ?>assets/dist/libs/flatpickr/dist/flatpickr.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
-    <script type="text/javascript" src="//cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js">
+    <script type="text/javascript" src="//cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/chart.js"></script>
     
     <!-- Tabler Core -->
     <script src="<?php echo base_url(); ?>assets/dist/js/tabler.min.js"></script>

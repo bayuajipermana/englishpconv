@@ -22,18 +22,18 @@
                 <div class="col-6">
                   <p class="h3">English Plus Conversation</p>
                   <address>
-                    Perum Jatisari Indah<br>
-                    Blok A1 No 16, Mijen<br>
-                    0823-2923-2167 / 0857-1200-3037
+                    Perum Jatisari Indah Blok A1 No. 16<br>
+                    Mijen, Semarang<br>
+                    0823-2923-2167 / 0857-1200-3037<br>
+                    <?php echo "Authorize - ".$user[0]->nama; ?>
                   </address>
                 </div>
                 <div class="col-6 text-right">
                   <p class="h3"><?php echo $pendaftaran[0]->nama ?></p>
                   <address>
-                    <?php echo "ID : ".$pendaftaran[0]->nik ?><br>
-                    <?php echo "Tanggal : ".date('d-m-Y',strtotime($pendaftaran[0]->tgl_pendaftaran))?><br>
-                    <?php echo "Jatuh Tempo : ".date('d-m-Y',strtotime($pendaftaran[0]->jt))?><br>
-
+                    <?php echo "ID ".$pendaftaran[0]->nik ?><br>
+                    <?php echo "Tanggal ".date('d-m-Y',strtotime($pendaftaran[0]->tgl_pendaftaran)); ?><br>
+                    <?php echo "Jatuh Tempo ".date('d-m-Y',strtotime($pendaftaran[0]->jt)) ?>
                   </address>
                 </div>
                 <div class="col-12 my-5">
@@ -46,6 +46,7 @@
                         <th class="text-center" style="width: 1%"></th>
                         <th>Program Belajar</th>
                         <th class="text-right" style="width: 1%">Price</th>
+                        <th class="text-right" style="width: 1%">Discount</th>
                         <th class="text-right" style="width: 1%">Amount</th>
                   </tr>
                 </thead>
@@ -54,24 +55,20 @@
                   <td>
                     <p class="strong mb-1"><?php echo $pendaftaran[0]->nama_program ?></p>
                   </td>
-                  <td class="text-right"><?php echo angka($pendaftaran[0]->saldo) ?></td>
+                  <td class="text-right"><?php echo angka($pendaftaran[0]->price) ?></td>
+                  <td class="text-right"><?php echo angka($pendaftaran[0]->diskon) ?></td>
                   <td class="text-right"><?php echo angka($pendaftaran[0]->saldo) ?></td>
                 </tr>
                 <tr>
-                  <td colspan="3" class="font-weight-bold text-uppercase text-right">Total</td>
-                  <td class="font-weight-bold text-right"><?php echo angka($pendaftaran[0]->saldo) ?></td>
-                </tr>
-                <tr>
-                  <td colspan="3" class="font-weight-bold text-uppercase text-right">Paid off</td>
+                  <td colspan="4" class="font-weight-bold text-uppercase text-right">Paid off</td>
                   <td class="font-weight-bold text-right"><?php echo angka($totalbayar[0]->saldo) ?></td>
                 </tr>
                 <tr>
-                  <td colspan="3" class="font-weight-bold text-uppercase text-right">Remaining</td>
+                  <td colspan="4" class="font-weight-bold text-uppercase text-right">Remaining</td>
                   <td class="font-weight-bold text-right"><?php echo angka($pendaftaran[0]->saldo - $totalbayar[0]->saldo) ?></td>
                 </tr>
               </table>
-              <p class="text-muted text-center mt-5">Thank you very much for doing business with us. We look forward to working with
-                you again!</p>
+              <p class="text-muted text-center mt-5"><?php date_default_timezone_set("Asia/Jakarta"); echo "Tercetak Tanggal ".date("d-m-Y")." Pukul ".date("H:i:s");  ?></p>
             </div>
           </div>
 </div>

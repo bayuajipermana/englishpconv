@@ -14,10 +14,18 @@ class Siswa extends CI_Controller{
     //load view siswa
     function inputsiswa(){
         $id_terakhir = $this->Model_siswa->getLastId()->row_array();
-        $nomorterakhir = $id_terakhir['nik'];
-        $id_siswa = buatkode($nomorterakhir,0, 4);
-        $data['siswa'] = $id_siswa;
-        $this->load->view('siswa/input_siswa',$data);
+        if(isset($id_terakhir)){
+            $nomorterakhir = $id_terakhir['nik'];
+            $id_siswa = buatkode($nomorterakhir,'S', 4);
+            $data['siswa'] = $id_siswa;
+            $this->load->view('siswa/input_siswa',$data);
+        }else{
+            $nomorterakhir = 0;
+            $id_siswa = buatkode($nomorterakhir,'S', 4);
+            $data['siswa'] = $id_siswa;
+            $this->load->view('siswa/input_siswa',$data);
+        }
+        
     }
     
     //proses insert db table siswa

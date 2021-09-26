@@ -4,6 +4,7 @@ class Pendaftaran extends CI_Controller{
         parent :: __construct();
         checklogin();
         $this->load->model('Model_pendaftaran');
+        $this->load->model('Model_pembayaran');
         $this->load->model('Model_siswa');  
         $this->load->model('Model_program');
         $this->load->model('Model_diskon');
@@ -11,7 +12,6 @@ class Pendaftaran extends CI_Controller{
     }
     //index page pendaftaran
     function index(){
-
         $data['pendaftaran'] = $this->Model_pendaftaran->getDataPendaftaran()->result();
         $this->template->load('template/template','pendaftaran/view_pendaftaran',$data);
     }
@@ -21,15 +21,23 @@ class Pendaftaran extends CI_Controller{
         $bulan = date('m');
         $tahun = date('Y');
         $getLastIdPendaftaran = $this->Model_pendaftaran->getLastIdPendaftaran($bulan,$tahun)->row_array();
-        $nomorterakhir = $getLastIdPendaftaran['id_pendaftaran'];
-        $id_pendaftaran = buatkode($nomorterakhir, $bulan.$tahun, 4);
-        $data['id_pendaftaran'] = $id_pendaftaran;
-        $data['siswa'] = $this->Model_siswa->getDataSiswa()->result();
-        $data['program'] = $this->Model_program->getDataProgram()->result();
-        $data['diskon'] = $this->Model_diskon->getDataDiskon()->result();
-        $this->template->load('template/template','pendaftaran/input_pendaftaran',$data);
+        if(isset($getLastIdPendaftaran)){
+            $nomorterakhir = $getLastIdPendaftaran['id_pendaftaran'];
+            $id_pendaftaran = buatkode($nomorterakhir, $bulan.$tahun, 4);
+            $data['id_pendaftaran'] = $id_pendaftaran;
+            $data['siswa'] = $this->Model_siswa->getDataSiswa()->result();
+            $data['program'] = $this->Model_program->getDataProgram()->result();
+            $data['diskon'] = $this->Model_diskon->getDataDiskon()->result();   
+            $this->template->load('template/template','pendaftaran/input_pendaftaran',$data);
+        }else{
+            $id_pendaftaran = buatkode(0, $bulan.$tahun, 4);
+            $data['id_pendaftaran'] = $id_pendaftaran;
+            $data['siswa'] = $this->Model_siswa->getDataSiswa()->result();
+            $data['program'] = $this->Model_program->getDataProgram()->result();
+            $data['diskon'] = $this->Model_diskon->getDataDiskon()->result();   
+            $this->template->load('template/template','pendaftaran/input_pendaftaran',$data);
+        }
     }
-
     function getJatuhtempo(){
         $tgl_pendaftaran  = $this->input->post('tgl_pendaftaran');
         $jatuhtempo       = date('Y-m-d', strtotime("+3 month", strtotime(date($tgl_pendaftaran))));
@@ -45,17 +53,39 @@ class Pendaftaran extends CI_Controller{
         $saldo = $this->input->post('total-value');
         $id_user = $this->input->post('id_user');
 
+        $price = $this->input->post('b-price');
+        $diskon = $this->input->post('b-diskon');
+        $dp = $this->input->post('b-dp');
+        $status = 0;
+        $saldo_piutang = $price - $diskon;
+        $saldo_bayar = $saldo_piutang - $dp;
+        if($saldo_bayar == 0){
+            $status = 1;
+        }
+        
         $data = array(
             'id_pendaftaran'        => $id_pendaftaran,
             'tgl_pendaftaran'       => $tgl_pendaftaran,
             'nik'                   => $nik,
             'id_program'            => $id_program,
             'jt'                    => $jatuhtempo,
-            'saldo'                 => $saldo,
-            'id_user'               => $id_user
+            'price'                 => $price,
+            'diskon'                => $diskon,
+            'saldo'                 => $saldo_piutang,
+            'id_user'               => $id_user,
+            'status'                => $status
         );
-
         $simpan = $this->Model_pendaftaran->dataPendaftaran($data);
+
+
+        
+        $data_pembayaran = array(
+            'id_pendaftaran'        => $id_pendaftaran,
+            'saldo'                 => $dp,
+            'tgl_bayar'             => $tgl_pendaftaran,
+            'created_by'            => $id_user,
+        );
+        $simpan = $this->Model_pembayaran->dataPembayaran($data_pembayaran);
         
         if($simpan == 1){
             $this->session->set_flashdata('msg','<div class="alert alert-success alert-dismissible" role="alert">
@@ -72,10 +102,28 @@ class Pendaftaran extends CI_Controller{
         }
     }
 
-    function detailpendaftaran(){
-        $id_pendaftaran = $this->uri->segment(3);
-        $data['pendaftaran'] = $this->Model_pembayaran->getDataPembayaranById($id_pendaftaran)->row_array();
-        $this->load->view('pendaftaran/detail_pendaftaran',$data);
-    }   
+    public function cekPendaftaran(){
+        $nik = $this->input->get('nik');
+        $id_program = $this->input->get('id_program');
+
+        $nama_siswa = $this->db->get_where('siswa',array('nik' => $nik))->result();
+        $data['nama_siswa'] = $nama_siswa[0]->nama;  
+        
+        $nama_program = $this->db->get_where('program',array('id_program' => $id_program))->result();
+        $data['nama_program'] = $nama_program[0]->nama_program;
+
+        $this->db->where('nik',$nik);
+        $this->db->where('id_program',$id_program);
+        $cek = $this->db->count_all_results('pendaftaran');
+
+        if ($cek > 0) {
+            $data['status'] = 0;
+        }else{
+            $data['status'] = 1;
+        }
+
+        echo json_encode($data);
+
+    }
 }
 ?>

@@ -22,13 +22,21 @@ class Model_pembayaran extends CI_Model{
     }
 
     function getDataPembayaran(){
-        $this->db->select('pembayaran.id_pembayaran, pembayaran.id_pendaftaran, siswa.nama, program.nama_program, program.id_program, pembayaran.tgl_bayar, pembayaran.saldo ');
+        $this->db->select('pembayaran.id_pembayaran, users.nama, pembayaran.id_pendaftaran, siswa.nama, program.nama_program, program.id_program, pembayaran.tgl_bayar, pembayaran.saldo ');
         $this->db->from('pembayaran');
         $this->db->join('pendaftaran','pendaftaran.id_pendaftaran = pembayaran.id_pendaftaran');
         $this->db->join('program', 'pendaftaran.id_program = program.id_program');
         $this->db->join('siswa','pendaftaran.nik = siswa.nik');
         $this->db->join('users','pendaftaran.id_user = users.id_user');
         return $this->db->get();
+    }
+
+    function getDataPembayaranByUser($user){
+        $this->db->select("pembayaran.id_pembayaran, pembayaran.id_pendaftaran, pembayaran.saldo, pembayaran.tgl_bayar, users.nama");
+        $this->db->from("pembayaran");
+        $this->db->join("users","pembayaran.created_by = users.id_user");
+        return $this->db->get();
+
     }
 
     function getDataPembayaranById($id){
