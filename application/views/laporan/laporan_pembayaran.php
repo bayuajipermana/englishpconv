@@ -45,7 +45,8 @@ Laporan Pembayaran
                             <th><center>Nama Siswa</center></th>
                             <th><center>Program Belajar</center></th>
                             <th><center>Jatuh Tempo</center></th>
-                            <th><center>Total Piutang</center></th>
+                            <th><center>Tanggal Bayar</center></th>
+                            <th><center>Sisa Piutang</center></th>
                             <th><center>Jumlah Bayar</center></th>
                         </tr>
                     </thead>
@@ -54,11 +55,7 @@ Laporan Pembayaran
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td style="text-align:right"></td>
-                            <td style="text-align:right"></td>
-                            <td style="text-align:right"></td>
-                            <td style="text-align:right"></td>
-                            <td tyle="text-align:right">Total : </td>
+                            <td colspan="6" style="text-align:right">Total : </td>
                             <td style="text-align:right"><span id="total_piutang"></span></td>
                             <td style="text-align:right"><span id="total_bayar"></span></td>
                         </tr>
@@ -130,18 +127,21 @@ Laporan Pembayaran
                     var totalPiutang = 0;
                     var totalBayar = 0;
                     for (let i = 0; i < result.length; i++) {
+                        var piutang = (result[i].saldo*1) - (result[i].total_bayar*1);
+
                         html += "<tr>"
                         html += "<td>"+no+"</td>"
                         html += "<td>"+result[i].id_pendaftaran+"</td>"
                         html += "<td>"+result[i].nama+"</td>"
                         html += "<td>"+result[i].nama_program+"</td>"
                         html += "<td>"+result[i].jt+"</td>"
-                        html += "<td style='text-align:right'>"+formatRupiah(result[i].saldo)+"</td>"
-                        html += "<td style='text-align:right'>"+formatRupiah(result[i].total_bayar)+"</td>"
+                        html += "<td>"+result[i].tgl_bayar+"</td>"
+                        html += "<td style='text-align:right'>"+formatRupiah(piutang)+"</td>"
+                        html += "<td style='text-align:right'>"+formatRupiah(result[i].jml_bayar)+"</td>"
                         html += "</tr>"
 
-                        totalPiutang = (totalPiutang*1) + (result[i].saldo*1);
-                        totalBayar = (totalBayar*1) + (result[i].total_bayar*1);
+                        totalPiutang = (totalPiutang*1) + (piutang*1);
+                        totalBayar = (totalBayar*1) + (result[i].jml_bayar*1);
                         no++;
                     }
 

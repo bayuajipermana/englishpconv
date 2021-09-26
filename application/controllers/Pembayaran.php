@@ -77,6 +77,7 @@ class Pembayaran extends CI_Controller{
     }
 
     function editpembayaran(){
+        checkAdmin();
         $id_pembayaran = $this->input->get('id');
         $id_pendaftaran = $this->input->get('id_pendaftaran');
         
