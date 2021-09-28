@@ -4,6 +4,8 @@ class Reports extends CI_Controller{
         parent::__construct();
         checklogin();
         $this->load->model('Model_program');
+        $this->load->model('Model_pembayaran');
+        $this->load->model('Model_pendaftaran');
     }
 
     function laporanPembayaran(){

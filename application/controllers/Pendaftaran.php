@@ -52,6 +52,7 @@ class Pendaftaran extends CI_Controller{
         $jatuhtempo = $this->input->post('jatuhtempo');
         $saldo = $this->input->post('total-value');
         $id_user = $this->input->post('id_user');
+        $ref = $this->input->post('ref');
 
         $price = $this->input->post('b-price');
         $diskon = $this->input->post('b-diskon');
@@ -73,7 +74,8 @@ class Pendaftaran extends CI_Controller{
             'diskon'                => $diskon,
             'saldo'                 => $saldo_piutang,
             'id_user'               => $id_user,
-            'status'                => $status
+            'status'                => $status,
+            'metode_bayar'          => $ref
         );
         $simpan = $this->Model_pendaftaran->dataPendaftaran($data);
 

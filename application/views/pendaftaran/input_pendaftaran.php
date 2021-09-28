@@ -48,6 +48,13 @@
                         <input type="hidden" name="b-dp" id="b-dp">
                     </div>
                     <div class="form-group mb-3">
+                        <select name="ref" id="ref" class="form-select">
+                            <option value="cash">Cash</option>
+                            <option value="trfbca">Transfer BCA</option>
+                            <option value="trfbri">Transfer BRI</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
                     <label class="form-label">Tanggal Jatuh Tempo</label>  
                         <div class="input-icon mb-3">
                             <span class="input-icon-addon">
@@ -265,6 +272,7 @@
         var nama_program = $("#nama_program").val();
         var diskon = $("#diskon").val();
         var dp = $("#dp").val();
+        var ref = $("#ref").val();
 
         if(id_pendaftaran == ""){
             swal("Opps", "ID Pendaftaran Kosong", "warning");

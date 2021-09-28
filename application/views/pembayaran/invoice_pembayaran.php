@@ -45,9 +45,9 @@
                     <tr>
                         <th class="text-center" style="width: 1%"></th>
                         <th>Program Belajar</th>
-                        <th class="text-right" style="width: 1%">Price</th>
-                        <th class="text-right" style="width: 1%">Discount</th>
-                        <th class="text-right" style="width: 1%">Amount</th>
+                        <th class="text-right" style="width: 1%">Harga</th>
+                        <th class="text-right" style="width: 1%">Diskon</th>
+                        <th class="text-right" style="width: 1%">Total</th>
                   </tr>
                 </thead>
                 <tr>
@@ -60,11 +60,11 @@
                   <td class="text-right"><?php echo angka($pendaftaran[0]->saldo) ?></td>
                 </tr>
                 <tr>
-                  <td colspan="4" class="font-weight-bold text-uppercase text-right">Paid off</td>
+                  <td colspan="4" class="font-weight-bold text-right">Telah terbayarkan</td>
                   <td class="font-weight-bold text-right"><?php echo angka($totalbayar[0]->saldo) ?></td>
                 </tr>
                 <tr>
-                  <td colspan="4" class="font-weight-bold text-uppercase text-right">Remaining</td>
+                  <td colspan="4" class="font-weight-bold text-right">Sisa Piutang</td>
                   <td class="font-weight-bold text-right"><?php echo angka($pendaftaran[0]->saldo - $totalbayar[0]->saldo) ?></td>
                 </tr>
               </table>
