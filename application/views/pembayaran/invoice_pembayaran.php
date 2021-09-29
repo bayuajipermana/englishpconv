@@ -33,7 +33,8 @@
                   <address>
                     <?php echo "ID ".$pendaftaran[0]->nik ?><br>
                     <?php echo "Tanggal ".date('d-m-Y',strtotime($pendaftaran[0]->tgl_pendaftaran)); ?><br>
-                    <?php echo "Jatuh Tempo ".date('d-m-Y',strtotime($pendaftaran[0]->jt)) ?>
+                    <?php echo "Jatuh Tempo ".date('d-m-Y',strtotime($pendaftaran[0]->jt)); ?><br>
+                    <?php if($pembayaran[0]->metode_bayar == 'cash'){ echo "Cash";}else if($pembayaran[0]->metode_bayar == 'trfbca'){ echo "Transfer BCA";}else if($pembayaran[0]->metode_bayar == 'trfbri'){ echo "Transfer BRI";}; ?>
                   </address>
                 </div>
                 <div class="col-12 my-5">
@@ -60,11 +61,7 @@
                   <td class="text-right"><?php echo angka($pendaftaran[0]->saldo) ?></td>
                 </tr>
                 <tr>
-                  <td colspan="4" class="font-weight-bold text-right">Telah dibayar</td>
-                  <td class="font-weight-bold text-right"><?php echo angka($totalbayar[0]->saldo) ?></td>
-                </tr>
-                <tr>
-                  <td colspan="4" class="font-weight-bold text-right">Dibayar</td>
+                  <td colspan="4" class="font-weight-bold text-right">Terbayarkan</td>
                   <td class="font-weight-bold text-right"><?php echo angka($pembayaran[0]->saldo) ?></td>
                 </tr>
                 <tr>

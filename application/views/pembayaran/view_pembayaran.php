@@ -17,7 +17,7 @@
                             <th><center>Tanggal Bayar</center></th>
                             <th><center>Jumlah Bayar</center></th>
                             <th><center>Methode Bayar</center></th>
-                            <th>AKSI</th>
+                            <th><center>AKSI</center></th>
                         </tr>
                     </thead>
                     <tboody>
@@ -33,7 +33,7 @@
                             <td><center><?php echo $b->tgl_bayar; ?></center></td>
                             <td><center><?php echo angka($b->saldo); ?></center></td>
                             <td><center><?php if($b->metode_bayar == 'cash'){ echo "Cash";}else if($b->metode_bayar == 'trfbca'){ echo "Transfer BCA";}else if($b->metode_bayar == 'trfbri'){ echo "Transfer BRI";}; ?></center></td>
-                            <td width="60px">
+                            <td width="90px">
                             <center>
                                 <a href="<?php echo base_url(); ?>pembayaran/editpembayaran?id=<?php echo $b->id_pembayaran; ?>&id_pendaftaran=<?php echo $b->id_pendaftaran?>" class="btn btn-sm btn-primary btn-pill fa fa-pencil edit"></a>   
                                 <a href="<?php echo base_url(); ?>pembayaran/invoicePembayaran?id=<?php echo $b->id_pembayaran; ?>&id_pendaftaran=<?php echo $b->id_pendaftaran?>&id_user=<?php echo $b->nama?>"  class="btn btn-sm btn-warning btn-pill fa fa-file"></a>   

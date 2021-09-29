@@ -40,6 +40,27 @@
                         <input type="text" name="diskon" id="diskon" class="form-control" placeholder="Diskon">
                     </div>
                     <div class="input-icon mb-3">
+                        <div class="form-label">Biaya Lain - Lain</div>
+                        <div>
+                            <label class="form-check">
+                                <input class="form-check-input" type="checkbox" onclick="pendaftaran()" id="pendaftaran" value="100000" name="pendaftaran">
+                                <span class="form-check-label">Pendaftaran - Rp100.000</span>
+                            </label>
+                        </div>
+                        <div>
+                            <label class="form-check">
+                                <input class="form-check-input" type="checkbox" onclick="buku()" id="buku" value="50000" name="buku">
+                                <span class="form-check-label">Modul Buku - Rp50.000</span>
+                            </label>
+                        </div>
+                        <div>
+                            <label class="form-check">
+                                <input class="form-check-input" type="checkbox" onclick="kaos()" id="kaos" value="50000" name="kaos">
+                                <span class="form-check-label">Kaos - Rp50.000</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="input-icon mb-3">
                         <span class="input-icon-addon">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><rect x="3" y="4" width="18" height="4" rx="2" /><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" /><line x1="10" y1="12" x2="14" y2="12" /></svg>                        </span>
                         <input type="text" name="dp" id="dp" class="form-control" onkeyup="down()" placeholder="Down Payment">
@@ -364,6 +385,36 @@
 
         $("#b-dp").val(dp);
 
+        var formatnumber = numeral(total).format('0,0');
+        $("#total").text(formatnumber);
+    }
+
+    function kaos(){
+        var value = document.getElementById("value-dp").value;
+        var kaos = $("#kaos").val();
+        
+        var total = value + kaos;
+        $("#total-value").val(total);
+        var formatnumber = numeral(total).format('0,0');
+        $("#total").text(formatnumber);
+    }
+
+    function buku(){
+        var value = document.getElementById("value-dp").value;
+        var buku = $("#buku").val();
+        
+        var total = value + buku;
+        $("#total-value").val(total);
+        var formatnumber = numeral(total).format('0,0');
+        $("#total").text(formatnumber);
+    }
+
+    function pendaftaran(){
+        var value = document.getElementById("value-dp").value;
+        var pendaftaran = $("#pendaftaran").val();
+        
+        var total = value + pendaftaran;
+        $("#total-value").val(total);
         var formatnumber = numeral(total).format('0,0');
         $("#total").text(formatnumber);
     }
