@@ -40,12 +40,14 @@ class Pembayaran extends CI_Controller{
         $bayar = $this->input->post('bayar');
         $tgl_bayar = date('Y-m-d');
         $id_user = $this->input->post('id_user');
+        $ref = $this->input->post('ref');
 
         $data = array(
             'id_pendaftaran'        => $id_pendaftaran,
             'saldo'                 => $bayar,
             'tgl_bayar'             => $tgl_bayar,
             'created_by'            => $id_user,
+            'metode_bayar'          => $ref
         );
 
         $simpan = $this->Model_pembayaran->dataPembayaran($data);
@@ -77,6 +79,7 @@ class Pembayaran extends CI_Controller{
     }
 
     function editpembayaran(){
+        checkAdmin();
         $id_pembayaran = $this->input->get('id');
         $id_pendaftaran = $this->input->get('id_pendaftaran');
         
@@ -126,7 +129,7 @@ class Pembayaran extends CI_Controller{
 
         $data['pembayaran'] = $this->Model_pembayaran->getDataPembayaranByid($id_pembayaran)->result();
         $data['pendaftaran'] = $this->Model_pendaftaran->getDataPendaftaranById($id_pendaftaran)->result();
-        $data['totalbayar'] = $this->Model_pembayaran->getTotalBayar($id_pendaftaran)->result();
+        $data['totalbayar'] = $this->Model_pembayaran->getTotalBayarSebelumnya($id_pendaftaran,$id_pembayaran)->result();
         $data['user'] = $this->Model_pembayaran->getDataPembayaranByUser($id_user)->result();
 
         $this->template->load('template/template','pembayaran/invoice_pembayaran',$data);

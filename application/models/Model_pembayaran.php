@@ -22,7 +22,7 @@ class Model_pembayaran extends CI_Model{
     }
 
     function getDataPembayaran(){
-        $this->db->select('pembayaran.id_pembayaran, users.nama, pembayaran.id_pendaftaran, siswa.nama, program.nama_program, program.id_program, pembayaran.tgl_bayar, pembayaran.saldo ');
+        $this->db->select('pembayaran.id_pembayaran, users.nama, pembayaran.metode_bayar , pembayaran.id_pendaftaran, siswa.nama, program.nama_program, program.id_program, pembayaran.tgl_bayar, pembayaran.saldo ');
         $this->db->from('pembayaran');
         $this->db->join('pendaftaran','pendaftaran.id_pendaftaran = pembayaran.id_pendaftaran');
         $this->db->join('program', 'pendaftaran.id_program = program.id_program');
@@ -47,6 +47,14 @@ class Model_pembayaran extends CI_Model{
         $this->db->select_sum('saldo');
         $this->db->from('pembayaran');
         $this->db->where('id_pendaftaran',$id);
+        return $this->db->get();
+    }
+
+    function getTotalBayarSebelumnya($id_pendaftaran, $id_pembayaran){
+        $this->db->select_sum('saldo');
+        $this->db->from('pembayaran');
+        $this->db->where('id_pendaftaran',$id_pendaftaran);
+        $this->db->where('id_pembayaran <=',$id_pembayaran);
         return $this->db->get();
     }
 }

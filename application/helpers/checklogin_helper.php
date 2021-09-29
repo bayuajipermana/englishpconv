@@ -15,3 +15,11 @@ function checklogin(){
         redirect('auth/login');
     }
 }
+
+function checkAdmin(){
+    $CI = & get_instance();
+    $level = $CI -> session -> userdata('level');
+    if(empty($level) or $level == 'user'){
+        redirect('Dashboard');
+    }
+}

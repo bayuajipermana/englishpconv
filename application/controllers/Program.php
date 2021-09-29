@@ -4,6 +4,7 @@ class Program extends CI_Controller{
     function __construct(){
         parent :: __construct();
         checklogin();
+        checkAdmin();
         $this->load->model('Model_program');
     }
     //index page PROGRAM

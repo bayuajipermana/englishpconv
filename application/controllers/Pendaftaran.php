@@ -74,8 +74,7 @@ class Pendaftaran extends CI_Controller{
             'diskon'                => $diskon,
             'saldo'                 => $saldo_piutang,
             'id_user'               => $id_user,
-            'status'                => $status,
-            'metode_bayar'          => $ref
+            'status'                => $status
         );
         $simpan = $this->Model_pendaftaran->dataPendaftaran($data);
 
@@ -86,6 +85,7 @@ class Pendaftaran extends CI_Controller{
             'saldo'                 => $dp,
             'tgl_bayar'             => $tgl_pendaftaran,
             'created_by'            => $id_user,
+            'metode_bayar'          => $ref
         );
         $simpan = $this->Model_pembayaran->dataPembayaran($data_pembayaran);
         

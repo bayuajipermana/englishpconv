@@ -37,6 +37,13 @@
                         <input type="text" name="tagihan" id="tagihan" class="form-control" readonly value="<?php echo angka($tagihan)." - Sisa Tagihan" ?>" placeholder="Payment">
                     </div>
                     <div class="form-group mb-3">
+                        <select name="ref" id="ref" class="form-select">
+                            <option value="cash">Cash</option>
+                            <option value="trfbca">Transfer BCA</option>
+                            <option value="trfbri">Transfer BRI</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
                     <label class="form-label">Tanggal Jatuh Tempo</label>  
                         <div class="input-icon mb-3">
                             <span class="input-icon-addon">
