@@ -60,12 +60,16 @@
                   <td class="text-right"><?php echo angka($pendaftaran[0]->saldo) ?></td>
                 </tr>
                 <tr>
-                  <td colspan="4" class="font-weight-bold text-right">Telah terbayarkan</td>
+                  <td colspan="4" class="font-weight-bold text-right">Telah dibayar</td>
                   <td class="font-weight-bold text-right"><?php echo angka($totalbayar[0]->saldo) ?></td>
                 </tr>
                 <tr>
+                  <td colspan="4" class="font-weight-bold text-right">Dibayar</td>
+                  <td class="font-weight-bold text-right"><?php echo angka($pembayaran[0]->saldo) ?></td>
+                </tr>
+                <tr>
                   <td colspan="4" class="font-weight-bold text-right">Sisa Piutang</td>
-                  <td class="font-weight-bold text-right"><?php echo angka($pendaftaran[0]->saldo - $totalbayar[0]->saldo) ?></td>
+                  <td class="font-weight-bold text-right"><?php echo angka($pendaftaran[0]->saldo - $totalbayar[0]->saldo - $pembayaran[0]->saldo) ?></td>
                 </tr>
               </table>
               <p class="text-muted text-center mt-5"><?php date_default_timezone_set("Asia/Jakarta"); echo "Tercetak Tanggal ".date("d-m-Y")." Pukul ".date("H:i:s");  ?></p>

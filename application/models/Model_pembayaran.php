@@ -54,7 +54,7 @@ class Model_pembayaran extends CI_Model{
         $this->db->select_sum('saldo');
         $this->db->from('pembayaran');
         $this->db->where('id_pendaftaran',$id_pendaftaran);
-        $this->db->where('id_pembayaran <=',$id_pembayaran);
+        $this->db->where('id_pembayaran <',$id_pembayaran);
         return $this->db->get();
     }
 }
