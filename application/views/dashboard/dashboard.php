@@ -72,18 +72,7 @@ var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels: [
-          <?php
-              // foreach($saldo_pembayaran_bulanan as $x){
-              //   echo "'".$x -> bulan. "', ";
-              // }
-              $month = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-
-              for ($i=0; $i < count($month)  ; $i++) { 
-                echo "'".$month[$i]."', ";
-              }
-          ?>
-        ],
+        labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
         datasets: [{
             label: 'Pemasukan tahun 2021',
             data: [
