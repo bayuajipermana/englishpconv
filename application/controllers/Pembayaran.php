@@ -127,6 +127,8 @@ class Pembayaran extends CI_Controller{
         $id_pendaftaran = $this->input->get('id_pendaftaran');
         $id_user = $this->input->get('id_user');
 
+        $data['biaya'] = $this->db->get_where('biayalain', array('id_pendaftaran' => $id_pendaftaran))->result();
+
         $data['pembayaran'] = $this->Model_pembayaran->getDataPembayaranByid($id_pembayaran)->result();
         $data['pendaftaran'] = $this->Model_pendaftaran->getDataPendaftaranById($id_pendaftaran)->result();
         $data['totalbayar'] = $this->Model_pembayaran->getTotalBayarSebelumnya($id_pendaftaran,$id_pembayaran)->result();

@@ -28,6 +28,7 @@ class Pendaftaran extends CI_Controller{
             $data['siswa'] = $this->Model_siswa->getDataSiswa()->result();
             $data['program'] = $this->Model_program->getDataProgram()->result();
             $data['diskon'] = $this->Model_diskon->getDataDiskon()->result();   
+            $this->db->delete('biayalain',array('id_pendaftaran' => $id_pendaftaran));
             $this->template->load('template/template','pendaftaran/input_pendaftaran',$data);
         }else{
             $id_pendaftaran = buatkode(0, $bulan.$tahun, 4);
@@ -35,6 +36,7 @@ class Pendaftaran extends CI_Controller{
             $data['siswa'] = $this->Model_siswa->getDataSiswa()->result();
             $data['program'] = $this->Model_program->getDataProgram()->result();
             $data['diskon'] = $this->Model_diskon->getDataDiskon()->result();   
+            $this->db->delete('biayalain',array('id_pendaftaran' => $id_pendaftaran));
             $this->template->load('template/template','pendaftaran/input_pendaftaran',$data);
         }
     }
@@ -58,7 +60,12 @@ class Pendaftaran extends CI_Controller{
         $diskon = $this->input->post('b-diskon');
         $dp = $this->input->post('b-dp');
         $status = 0;
-        $saldo_piutang = $price - $diskon;
+        
+        $this->db->select_sum('nominal');
+        $this->db->where('id_pendaftaran',$id_pendaftaran);
+        $biaya = $this->db->get('biayalain')->result();
+        $saldo_piutang = $price - $diskon + $biaya[0]->nominal;
+
         $saldo_bayar = $saldo_piutang - $dp;
         if($saldo_bayar == 0){
             $status = 1;
@@ -126,6 +133,23 @@ class Pendaftaran extends CI_Controller{
 
         echo json_encode($data);
 
+    }
+
+    function toggleBiayaLain(){
+        $id_pendaftaran = $this->input->post('id_pendaftaran');
+        $nominal = $this->input->post('nominal');
+        $keterangan = $this->input->post('keterangan');
+        $flag = $this->input->post('flag');
+        if ($flag == 1) {
+            $data = array(
+                'id_pendaftaran'        => $id_pendaftaran,
+                'nominal'               => $nominal,
+                'keterangan'            => $keterangan,
+            );
+            $execute = $this->db->insert('biayalain',$data);
+        }else{
+            $execute = $this->db->delete('biayalain', array('id_pendaftaran' => $id_pendaftaran, 'keterangan' => $keterangan, 'nominal' => $nominal)); 
+        }
     }
 }
 ?>

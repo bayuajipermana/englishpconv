@@ -43,19 +43,19 @@
                         <div class="form-label">Biaya Lain - Lain</div>
                         <div>
                             <label class="form-check">
-                                <input class="form-check-input" type="checkbox" onclick="pendaftaran()" id="pendaftaran" value="100000" name="pendaftaran">
+                                <input class="form-check-input" data-ket="Pendaftaran" type="checkbox" id="pendaftaran" value="100000" name="biaya[]">
                                 <span class="form-check-label">Pendaftaran - Rp100.000</span>
                             </label>
                         </div>
                         <div>
                             <label class="form-check">
-                                <input class="form-check-input" type="checkbox" onclick="buku()" id="buku" value="50000" name="buku">
+                                <input class="form-check-input" data-ket="Modul Buku" type="checkbox" id="buku" value="50000" name="biaya[]">
                                 <span class="form-check-label">Modul Buku - Rp50.000</span>
                             </label>
                         </div>
                         <div>
                             <label class="form-check">
-                                <input class="form-check-input" type="checkbox" onclick="kaos()" id="kaos" value="50000" name="kaos">
+                                <input class="form-check-input" data-ket="Kaos" type="checkbox" id="kaos" value="50000" name="biaya[]">
                                 <span class="form-check-label">Kaos - Rp50.000</span>
                             </label>
                         </div>
@@ -287,6 +287,51 @@
 
         
     });
+    $("input[name='biaya[]']").click(function(){
+        var id_pendaftaran = $("#id_pendaftaran").val();
+        var flag = 0;
+        var nominal = $(this).val();
+        var keterangan = $(this).attr('data-ket');
+        var value = document.getElementById("value-dp").value;
+        if (value === '') {
+            value=0;
+        }
+        console.log(value);
+
+
+        if ($(this).is(':checked')) {
+            flag = 1;
+            var total = parseFloat(value) + parseFloat(nominal);
+            $("#total-value").val(total);
+            $("#value-dp").val(total);
+            console.log(total);
+            console.log(total);
+            var formatnumber = numeral(total).format('0,0');
+            console.log(formatnumber);
+            $("#total").text(formatnumber);
+        }else{
+            var total = value - nominal;
+            $("#total-value").val(total);
+            $("#value-dp").val(total);
+            var formatnumber = numeral(total).format('0,0');
+            $("#total").text(formatnumber);
+        }
+
+        $.ajax({
+                url : "toggleBiayaLain",
+                type : "POST",
+                data : {
+                    id_pendaftaran : id_pendaftaran,
+                    nominal : nominal,
+                    keterangan : keterangan,
+                    flag : flag
+                },
+                success: function(result){
+                    console.log(result);
+                }
+            })
+    })
+
     $("#formpendaftaran").submit(function(){
         var id_pendaftaran = $("#id_pendaftaran").val();
         var nama_siswa = $("#nama_siswa").val();
@@ -389,34 +434,6 @@
         $("#total").text(formatnumber);
     }
 
-    function kaos(){
-        var value = document.getElementById("value-dp").value;
-        var kaos = $("#kaos").val();
-        
-        var total = value + kaos;
-        $("#total-value").val(total);
-        var formatnumber = numeral(total).format('0,0');
-        $("#total").text(formatnumber);
-    }
-
-    function buku(){
-        var value = document.getElementById("value-dp").value;
-        var buku = $("#buku").val();
-        
-        var total = value + buku;
-        $("#total-value").val(total);
-        var formatnumber = numeral(total).format('0,0');
-        $("#total").text(formatnumber);
-    }
-
-    function pendaftaran(){
-        var value = document.getElementById("value-dp").value;
-        var pendaftaran = $("#pendaftaran").val();
-        
-        var total = value + pendaftaran;
-        $("#total-value").val(total);
-        var formatnumber = numeral(total).format('0,0');
-        $("#total").text(formatnumber);
-    }
+    
 
 </script>

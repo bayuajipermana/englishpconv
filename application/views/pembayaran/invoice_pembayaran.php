@@ -52,14 +52,39 @@
                   </tr>
                 </thead>
                 <tr>
-                  <td class="text-center">1</td>
+                  <td class="text-center"><?php $no=1; echo $no ?></td>
                   <td>
                     <p class="strong mb-1"><?php echo $pendaftaran[0]->nama_program ?></p>
                   </td>
                   <td class="text-right"><?php echo angka($pendaftaran[0]->price) ?></td>
                   <td class="text-right"><?php echo angka($pendaftaran[0]->diskon) ?></td>
-                  <td class="text-right"><?php echo angka($pendaftaran[0]->saldo) ?></td>
+                  <?php
+                  
+                  $subtotal = $pendaftaran[0]->price - $pendaftaran[0]->diskon;
+                  
+                  ?>
+                  <td class="text-right"><?php echo angka($subtotal) ?></td>
                 </tr>
+                <?php
+                  if (count($biaya)>0) { 
+                     foreach($biaya as $b){
+                    
+                    ?>
+
+                <tr>
+                  <td class="text-center"><?php echo ++$no ?></td>
+                  <td>
+                    <p class="strong mb-1"><?php echo $b->keterangan ?></p>
+                  </td>
+                  <td class="text-right"><?php echo angka($b->nominal) ?></td>
+                  <td class="text-right"><?php echo angka(0) ?></td>
+                  <td class="text-right"><?php echo angka($subtotal += $b->nominal) ?></td>
+                </tr>
+                    
+                <?php }
+                }
+                
+                ?>
                 <tr>
                   <td colspan="4" class="font-weight-bold text-right">Terbayarkan</td>
                   <td class="font-weight-bold text-right"><?php echo angka($pembayaran[0]->saldo) ?></td>

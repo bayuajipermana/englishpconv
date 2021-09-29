@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 25 Sep 2021 pada 19.00
+-- Waktu pembuatan: 29 Sep 2021 pada 09.45
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.1
 
@@ -21,6 +21,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `englishpconv`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `biayalain`
+--
+
+CREATE TABLE `biayalain` (
+  `id_biayalain` int(11) NOT NULL,
+  `id_pendaftaran` varchar(20) NOT NULL,
+  `keterangan` varchar(20) NOT NULL,
+  `nominal` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `biayalain`
+--
+
+INSERT INTO `biayalain` (`id_biayalain`, `id_pendaftaran`, `keterangan`, `nominal`) VALUES
+(56, '0920210015', 'Modul Buku', 50000),
+(58, '0920210015', 'Pendaftaran', 100000),
+(59, '0920210016', 'Pendaftaran', 100000),
+(60, '0920210016', 'Modul Buku', 50000),
+(61, '0920210016', 'Kaos', 50000);
 
 -- --------------------------------------------------------
 
@@ -55,6 +79,7 @@ CREATE TABLE `pembayaran` (
   `id_pendaftaran` varchar(10) NOT NULL,
   `saldo` int(11) NOT NULL,
   `tgl_bayar` date NOT NULL DEFAULT current_timestamp(),
+  `metode_bayar` varchar(20) DEFAULT NULL,
   `created_by` varchar(5) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -63,14 +88,21 @@ CREATE TABLE `pembayaran` (
 -- Dumping data untuk tabel `pembayaran`
 --
 
-INSERT INTO `pembayaran` (`id_pembayaran`, `id_pendaftaran`, `saldo`, `tgl_bayar`, `created_by`, `created_at`) VALUES
-(3, '0920210002', 3000000, '2021-09-25', 'USR03', '2021-09-24 22:07:21'),
-(4, '0920210002', 2000000, '2021-09-25', 'USR03', '2021-09-24 22:15:56'),
-(11, '0920210002', 4000000, '2021-09-25', 'USR03', '2021-09-25 10:42:12'),
-(12, '0920210001', 0, '2021-09-25', 'USR03', '2021-09-25 11:45:22'),
-(13, '0920210003', 500000, '2021-09-25', 'USR03', '2021-09-25 22:26:28'),
-(14, '0920210012', 500000, '2021-09-25', 'USR03', '2021-09-25 23:50:53'),
-(15, '0920210012', 200000, '2021-09-25', 'USR03', '2021-09-25 23:55:35');
+INSERT INTO `pembayaran` (`id_pembayaran`, `id_pendaftaran`, `saldo`, `tgl_bayar`, `metode_bayar`, `created_by`, `created_at`) VALUES
+(3, '0920210002', 3000000, '2021-08-18', NULL, 'USR03', '2021-09-24 22:07:21'),
+(4, '0920210002', 2000000, '2021-07-22', NULL, 'USR03', '2021-09-24 22:15:56'),
+(11, '0920210002', 4000000, '2021-09-25', NULL, 'USR03', '2021-09-25 10:42:12'),
+(12, '0920210001', 0, '2021-09-25', NULL, 'USR03', '2021-09-25 11:45:22'),
+(13, '0920210003', 500000, '2021-09-25', NULL, 'USR03', '2021-09-25 22:26:28'),
+(14, '0920210012', 500000, '2021-09-25', NULL, 'USR03', '2021-09-25 23:50:53'),
+(15, '0920210012', 200000, '2021-09-14', NULL, 'USR03', '2021-09-25 23:55:35'),
+(16, '0920210013', 450000, '2021-09-25', NULL, 'USR03', '2021-09-26 00:59:57'),
+(17, '0920210012', 8800000, '2021-09-25', NULL, 'USR03', '2021-09-26 01:02:33'),
+(18, '0920210014', 450000, '2021-09-26', NULL, 'USR03', '2021-09-26 12:16:33'),
+(19, '0920210013', 500000, '2021-09-29', 'trfbca', 'USR03', '2021-09-29 09:41:05'),
+(20, '0920210015', 3000000, '2021-09-29', 'cash', 'USR03', '2021-09-29 14:20:03'),
+(21, '0920210016', 4000000, '2021-09-29', 'cash', 'USR03', '2021-09-29 14:26:23'),
+(22, '0920210016', 200000, '2021-09-29', 'cash', 'USR03', '2021-09-29 14:27:08');
 
 -- --------------------------------------------------------
 
@@ -106,7 +138,11 @@ INSERT INTO `pendaftaran` (`id_pendaftaran`, `tgl_pendaftaran`, `nik`, `id_progr
 ('0920210008', '2021-09-12', '3374132703990001', 'REG01', '2021-12-12', 0, 0, 1800000, 'USR03', 0),
 ('0920210009', '2021-09-20', '3374132703990001', 'REG01', '2021-12-20', 0, 0, 1950000, 'USR03', 0),
 ('0920210010', '2021-09-24', '3374132703990001', 'EXE01', '2021-12-24', 0, 0, 9450000, 'USR03', 0),
-('0920210012', '2021-09-25', '6543339876543220', 'EXE01', '2021-12-25', 10000000, 500000, 9500000, 'USR03', 0);
+('0920210012', '2021-09-25', '6543339876543220', 'EXE01', '2021-12-25', 10000000, 500000, 9500000, 'USR03', 1),
+('0920210013', '2021-09-25', '6543339876543220', 'PRV01', '2021-12-25', 6000000, 50000, 5950000, 'USR03', 0),
+('0920210014', '2021-09-26', '0009', 'REG01', '2021-12-26', 3000000, 50000, 2950000, 'USR03', 0),
+('0920210015', '2021-09-29', '0009', 'EXE01', '2021-12-29', 10000000, 50000, 9950000, 'USR03', 0),
+('0920210016', '2021-09-29', '0009', 'EXE01', '2021-12-29', 10000000, 1000000, 9200000, 'USR03', 0);
 
 -- --------------------------------------------------------
 
@@ -156,6 +192,7 @@ CREATE TABLE `siswa` (
 --
 
 INSERT INTO `siswa` (`nik`, `nama`, `alamat`, `no_hp`, `asal_sekolah`, `kelas`, `tgl_lahir`, `nama_wali`, `hp_wali`) VALUES
+('0009', 'Brian Marcius', 'Jl. Genuk Karanglo', '089667610555', 'SMKN 7 SMG', 12, '1998-12-27', '-', '-'),
 ('3374132703990001', 'Anggi March Diani', 'Jl. Simongan Panjangan RT2/RW7', '081226230447', 'SMK Texmaco', 1, '1999-03-09', 'Lagiman', '081226230441'),
 ('3374132703990002', 'Prasaja Bagas Triantoko', 'Plosok', '0812412412412', 'SMK Texmaco', 12, '1901-01-13', 'Suntoro', '0812141212222'),
 ('3374132703990003', 'Doni Sariawan', 'Demit', '081226230449', 'SMK Sembako', 8, '1991-03-29', 'Joko', '081226230422'),
@@ -192,6 +229,12 @@ INSERT INTO `users` (`id_user`, `nama`, `no_hp`, `username`, `password`, `level`
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indeks untuk tabel `biayalain`
+--
+ALTER TABLE `biayalain`
+  ADD PRIMARY KEY (`id_biayalain`);
 
 --
 -- Indeks untuk tabel `diskon`
@@ -234,10 +277,16 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT untuk tabel `biayalain`
+--
+ALTER TABLE `biayalain`
+  MODIFY `id_biayalain` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+
+--
 -- AUTO_INCREMENT untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id_pembayaran` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_pembayaran` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
