@@ -77,15 +77,10 @@ var myChart = new Chart(ctx, {
             label: 'Pemasukan tahun 2021',
             data: [
                     <?php
-                        // foreach($saldo_pembayaran_bulanan as $x){
-                        //   echo $x -> pemasukan. ", ";
-                        // }
-
-                        $month = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-                        for ($i=0; $i < count($month); $i++) { 
+                        for ($i=1; $i <= 12; $i++) { 
                           $ada = "0, ";
                           foreach($saldo_pembayaran_bulanan as $x){
-                            if ($x->bulan==$month[$i]) {
+                            if ($x->bulan==$i) {
                               $ada = $x->pemasukan.", "; 
                               break;
                             }
