@@ -74,8 +74,13 @@ var myChart = new Chart(ctx, {
     data: {
         labels: [
           <?php
-              foreach($saldo_pembayaran_bulanan as $x){
-                echo $x -> bulan. ", ";
+              // foreach($saldo_pembayaran_bulanan as $x){
+              //   echo "'".$x -> bulan. "', ";
+              // }
+              $month = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+              for ($i=0; $i < count($month)  ; $i++) { 
+                echo "'".$month[$i]."', ";
               }
           ?>
         ],
@@ -83,12 +88,24 @@ var myChart = new Chart(ctx, {
             label: 'Pemasukan tahun 2021',
             data: [
                     <?php
-                        foreach($saldo_pembayaran_bulanan as $x){
-                          echo $x -> pemasukan. ", ";
+                        // foreach($saldo_pembayaran_bulanan as $x){
+                        //   echo $x -> pemasukan. ", ";
+                        // }
+
+                        $month = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+                        for ($i=0; $i < count($month); $i++) { 
+                          $ada = "0, ";
+                          foreach($saldo_pembayaran_bulanan as $x){
+                            if ($x->bulan==$month[$i]) {
+                              $ada = $x->pemasukan.", "; 
+                              break;
+                            }
+                          }
+                          echo $ada;
                         }
                     ?>
                   ],
-            
+            backgroundColor : 'rgba(255, 159, 64, 1)',
             borderColor: [
                 'rgba(255, 99, 132, 1)',
                 'rgba(54, 162, 235, 1)',
@@ -97,14 +114,17 @@ var myChart = new Chart(ctx, {
                 'rgba(153, 102, 255, 1)',
                 'rgba(255, 159, 64, 1)'
             ],
+            fill : true,
+
             borderWidth: 1
         }]
     },
     options: {
+        responsive: true,
         scales: {
             y: {
                 beginAtZero: true
-            }
+            },
         }
     }
 });
