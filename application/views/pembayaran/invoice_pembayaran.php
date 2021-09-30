@@ -25,7 +25,7 @@
                     Perum Jatisari Indah Blok A1 No. 16<br>
                     Mijen, Semarang<br>
                     0823-2923-2167 / 0857-1200-3037<br>
-                    <?php echo "Authorize - ".$user[0]->nama; ?>
+                    <?php echo "Authorize - Miss. ".$user[0]->nama; ?>
                   </address>
                 </div>
                 <div class="col-6 text-right">

@@ -31,10 +31,11 @@ class Model_pembayaran extends CI_Model{
         return $this->db->get();
     }
 
-    function getDataPembayaranByUser($user){
+    function getDataPembayaranByUser($id){
         $this->db->select("pembayaran.id_pembayaran, pembayaran.id_pendaftaran, pembayaran.saldo, pembayaran.tgl_bayar, users.nama");
         $this->db->from("pembayaran");
         $this->db->join("users","pembayaran.created_by = users.id_user");
+        $this->db->where('id_pembayaran',$id);
         return $this->db->get();
 
     }
