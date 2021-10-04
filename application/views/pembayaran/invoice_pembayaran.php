@@ -16,7 +16,7 @@
             </div>
         </div>
     </div>
-    <div class="card card-lg">
+    <div class="card card-lg" >
         <div class="card-body">
             <div class="row">
                 <div class="col-6">
@@ -37,7 +37,7 @@
                     <?php if($pembayaran[0]->metode_bayar == 'cash'){ echo "Cash";}else if($pembayaran[0]->metode_bayar == 'trfbca'){ echo "Transfer BCA";}else if($pembayaran[0]->metode_bayar == 'trfbri'){ echo "Transfer BRI";}; ?>
                   </address>
                 </div>
-                <div class="col-12 my-5">
+                <div class="col-12 my-1">
                   <h1>Invoice <?php echo $pendaftaran[0]->id_pendaftaran.'/'.$pembayaran[0]->id_pembayaran?></h1>
                 </div>
             </div>
@@ -94,7 +94,7 @@
                   <td class="font-weight-bold text-right"><?php echo angka($pendaftaran[0]->saldo - $totalbayar[0]->saldo - $pembayaran[0]->saldo) ?></td>
                 </tr>
               </table>
-              <p class="text-muted text-center mt-5"><?php date_default_timezone_set("Asia/Jakarta"); echo "Tercetak Tanggal ".date("d-m-Y")." Pukul ".date("H:i:s");  ?></p>
+              <p class="text-muted text-center mt-2"><?php date_default_timezone_set("Asia/Jakarta"); echo "Tercetak Tanggal ".date("d-m-Y")." Pukul ".date("H:i:s");  ?></p>
             </div>
           </div>
 </div>
