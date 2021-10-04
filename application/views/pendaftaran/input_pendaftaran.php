@@ -365,7 +365,7 @@
     });
     $("#tablesiswa").DataTable();
 
-    $(".pilih").click(function(){
+    $("#tablesiswa").on("click", ".pilih", function(){
         var nik = $(this).attr("data-id");
         var nama= $(this).attr("data-nama");
 
