@@ -45,18 +45,12 @@
                 Password
               </label>
               <div class="input-group input-group-flat">
-                <input type="password" name="password" class="form-control"  placeholder="Password"  autocomplete="off">
+                <input type="password" name="password" class="form-control"  placeholder="Password"  id="password" autocomplete="off">
                 <span class="input-group-text"> 
-                  <a href="#" class="link-secondary" title="Show password" data-toggle="tooltip"><svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="2" /><path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" /></svg>
+                  <a href="#" class="link-secondary" onclick="myFunction()" title="Show password" data-toggle="tooltip"><svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="2" /><path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" /></svg>
                   </a>
                 </span>
               </div>
-            </div>
-            <div class="mb-2">
-              <label class="form-check">
-                <input type="checkbox" class="form-check-input"/>
-                <span class="form-check-label">Remember me</span>
-              </label>
             </div>
             <div class="form-footer">
               <button type="submit" class="btn btn-primary w-100"><svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="7" r="4" /><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /></svg>Sign in</button>
@@ -71,6 +65,14 @@
     <script src="<?php echo base_url(); ?>assets/dist/js/tabler.min.js"></script>
     <script>
       document.body.style.display = "block"
+      function myFunction(){
+        var x = document.getElementById("password");
+        if(x.type === "password"){
+          x.type = "text";
+        }else{
+          x.type = "password";
+        }
+      }
     </script>
   </body>
 </html>
