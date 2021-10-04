@@ -379,7 +379,7 @@
     });
     $("#tableprogram").DataTable();
 
-    $(".pilihprog").click(function(){
+    $("#tableprogram").on("click", ".pilihprog", function(){
         var id_program = $(this).attr("data-idprog");
         var nama_program= $(this).attr("data-namaprog");
         var harga = $(this).attr("data-harga");
@@ -400,7 +400,7 @@
     });
     $("#tablediskon").DataTable();
 
-    $(".pilihdiskon").click(function(){
+    $("#tablediskon").on("click", ".pilihdiskon", function(){
         var id_diskon = $(this).attr("data-iddis");
         var nama_diskon= $(this).attr("data-namadis");
         var value = $(this).attr("data-diskon");
