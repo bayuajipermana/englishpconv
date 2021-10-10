@@ -34,7 +34,7 @@
         </div>
         <form class="card card-md" action="<?php echo base_url(); ?>auth/ceklogin" method="POST" autocomplete="off">
           <div class="card-body">
-            <h2 class="card-title text-center mb-4">Login</h2>
+            <h2 class="card-title text-center mb-4">SUNTUL</h2>
             <h4><?php echo $this->session->flashdata('msg');  ?></h4>
             <div class="mb-3">
               <label class="form-label">Username</label>
