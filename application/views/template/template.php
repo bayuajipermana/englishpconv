@@ -177,6 +177,13 @@
                     </a>
                   </div>
                 </div>
+                <div class="dropdown-menu-columns">
+                  <div class="dropdown-menu-column">
+                    <a class="dropdown-item" href="<?php echo base_url(); ?>Reports/laporanPiutang" >
+                      Laporan Piutang
+                    </a>
+                  </div>
+                </div>
               </div>
             </li>
             <?php } ?>
