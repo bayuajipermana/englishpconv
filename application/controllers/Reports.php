@@ -12,6 +12,35 @@ class Reports extends CI_Controller{
         $this->template->load('template/template','laporan/laporan_pembayaran',$data);
     }
 
+    function laporanPiutang(){
+        $data['program'] = $this->Model_program->getDataProgram()->result();
+        $this->template->load('template/template','laporan/laporan_piutang',$data);
+    }
+
+    function getDataLapPiutang(){
+        $tglawal = $this->input->post('tglawal');
+        $tglakhir = $this->input->post('tglakhir');
+        $program = $this->input->post('program');
+
+        $this->db->select('pendaftaran.id_pendaftaran, siswa.nama, program.nama_program, pendaftaran.jt,
+                            pendaftaran.price, pendaftaran.diskon, 
+                            (SELECT SUM(nominal) FROM biayalain WHERE biayalain.id_pendaftaran = pendaftaran.id_pendaftaran) AS biayalain,
+                            pendaftaran.saldo, (SELECT SUM(saldo) FROM pembayaran WHERE pembayaran.id_pendaftaran = pendaftaran.id_pendaftaran)  AS terbayarkan,
+                            pendaftaran.saldo - (SELECT SUM(saldo) FROM pembayaran WHERE pembayaran.id_pendaftaran = pendaftaran.id_pendaftaran) AS piutang');
+        $this->db->from('pendaftaran');
+        $this->db->join('siswa','siswa.nik = pendaftaran.nik');
+        $this->db->join('program','program.id_program = pendaftaran.id_program');
+        $this->db->join('pembayaran','pendaftaran.id_pendaftaran = pembayaran.id_pendaftaran');
+        $this->db->group_by('pendaftaran.id_pendaftaran');
+
+        if ($this->input->post('program') !== 'All') {
+            $this->db->where('pendaftaran.status',$program);
+        }
+        $data = $this->db->get()->result();
+
+        echo json_encode($data);
+    }
+
     function getDataLapPembayaran(){
         $tglawal = $this->input->post('tglawal');
         $tglakhir = $this->input->post('tglakhir');
@@ -58,5 +87,25 @@ class Reports extends CI_Controller{
         $this->load->view('laporan/export_laporan_pembayaran.php',$data);
     }
 
+    function getDataLapPiutang_Excel(){
+        $program = $this->input->get('program');
 
+        $this->db->select('pendaftaran.id_pendaftaran, siswa.nama, program.nama_program, pendaftaran.jt,
+                            pendaftaran.price, pendaftaran.diskon, 
+                            (SELECT SUM(nominal) FROM biayalain WHERE biayalain.id_pendaftaran = pendaftaran.id_pendaftaran) AS biayalain,
+                            pendaftaran.saldo, (SELECT SUM(saldo) FROM pembayaran WHERE pembayaran.id_pendaftaran = pendaftaran.id_pendaftaran)  AS terbayarkan,
+                            pendaftaran.saldo - (SELECT SUM(saldo) FROM pembayaran WHERE pembayaran.id_pendaftaran = pendaftaran.id_pendaftaran) AS piutang');
+        $this->db->from('pendaftaran');
+        $this->db->join('siswa','siswa.nik = pendaftaran.nik');
+        $this->db->join('program','program.id_program = pendaftaran.id_program');
+        $this->db->join('pembayaran','pendaftaran.id_pendaftaran = pembayaran.id_pendaftaran');
+        $this->db->group_by('pendaftaran.id_pendaftaran');
+
+        if ($this->input->get('program') !== 'All') {
+            $this->db->where('pendaftaran.status',$program);
+        }
+        $data['x'] = $this->db->get()->result();
+
+        $this->load->view('laporan/export_laporan_piutang.php',$data);
+    }
 }

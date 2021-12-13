@@ -379,7 +379,11 @@
     });
     $("#tableprogram").DataTable();
 
+<<<<<<< HEAD
    $("#tableprogram").on("click", ".pilihprog", function(){
+=======
+    $("#tableprogram").on("click", ".pilihprog", function(){
+>>>>>>> 6d538e9ac56634757797ce619ccbeb15f4e0d9ed
         var id_program = $(this).attr("data-idprog");
         var nama_program= $(this).attr("data-namaprog");
         var harga = $(this).attr("data-harga");
@@ -400,7 +404,11 @@
     });
     $("#tablediskon").DataTable();
 
+<<<<<<< HEAD
    $("#tablediskon").on("click", ".pilihdiskon", function(){
+=======
+    $("#tablediskon").on("click", ".pilihdiskon", function(){
+>>>>>>> 6d538e9ac56634757797ce619ccbeb15f4e0d9ed
         var id_diskon = $(this).attr("data-iddis");
         var nama_diskon= $(this).attr("data-namadis");
         var value = $(this).attr("data-diskon");

@@ -22,7 +22,7 @@
     <link href="<?php echo base_url(); ?>assets/dist/css/demo.min.css" rel="stylesheet"/>
     <style>
       body {
-      	display: none;
+        display: none;
       }
     </style>
   </head>
@@ -34,7 +34,7 @@
         </div>
         <form class="card card-md" action="<?php echo base_url(); ?>auth/ceklogin" method="POST" autocomplete="off">
           <div class="card-body">
-            <h2 class="card-title text-center mb-4">Login</h2>
+            <h2 class="card-title text-center mb-4">English Plus Conversation</h2>
             <h4><?php echo $this->session->flashdata('msg');  ?></h4>
             <div class="mb-3">
               <label class="form-label">Username</label>
@@ -45,9 +45,9 @@
                 Password
               </label>
               <div class="input-group input-group-flat">
-                <input type="password" name="password" class="form-control"  placeholder="Password" id="password" autocomplete="off">
+                <input type="password" name="password" class="form-control"  placeholder="Password"  id="password" autocomplete="off">
                 <span class="input-group-text"> 
-                  <a href="#" class="link-secondary" title="Show password" onclick="myFunction()" data-toggle="tooltip"><svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="2" /><path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" /></svg>
+                  <a href="#" class="link-secondary" onclick="myFunction()" title="Show password" data-toggle="tooltip"><svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="2" /><path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" /></svg>
                   </a>
                 </span>
               </div>
@@ -65,10 +65,9 @@
     <script src="<?php echo base_url(); ?>assets/dist/js/tabler.min.js"></script>
     <script>
       document.body.style.display = "block"
-
       function myFunction(){
         var x = document.getElementById("password");
-        if (x.type === "password") {
+        if(x.type === "password"){
           x.type = "text";
         }else{
           x.type = "password";

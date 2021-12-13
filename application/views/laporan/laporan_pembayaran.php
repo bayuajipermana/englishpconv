@@ -45,8 +45,7 @@ Laporan Pembayaran
                             <th><center>Nama Siswa</center></th>
                             <th><center>Program Belajar</center></th>
                             <th><center>Jatuh Tempo</center></th>
-                            <th><center>Tanggal Bayar</center></th>
-                            <th><center>Sisa Piutang</center></th>
+                            <th><center>Tanggal Bayar</center></th>     
                             <th><center>Jumlah Bayar</center></th>
                         </tr>
                     </thead>
@@ -56,7 +55,6 @@ Laporan Pembayaran
                     <tfoot>
                         <tr>
                             <td colspan="6" style="text-align:right">Total : </td>
-                            <td style="text-align:right"><span id="total_piutang"></span></td>
                             <td style="text-align:right"><span id="total_bayar"></span></td>
                         </tr>
                     </tfoot>
@@ -136,7 +134,6 @@ Laporan Pembayaran
                         html += "<td>"+result[i].nama_program+"</td>"
                         html += "<td>"+result[i].jt+"</td>"
                         html += "<td>"+result[i].tgl_bayar+"</td>"
-                        html += "<td style='text-align:right'>"+formatRupiah(piutang)+"</td>"
                         html += "<td style='text-align:right'>"+formatRupiah(result[i].jml_bayar)+"</td>"
                         html += "</tr>"
 

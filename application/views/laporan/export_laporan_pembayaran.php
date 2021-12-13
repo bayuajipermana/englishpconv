@@ -21,7 +21,6 @@
                             <th><center>Program Belajar</center></th>
                             <th><center>Jatuh Tempo</center></th>
                             <th><center>Tanggal Bayar</center></th>
-                            <th><center>Total Piutang</center></th>
                             <th><center>Jumlah Bayar</center></th>
                         </tr>
                     </thead>
@@ -41,7 +40,6 @@
                                 <td><?php echo $p->nama_program ?></td>
                                 <td><?php echo $p->jt ?></td>
                                 <td><?php echo $p->tgl_bayar ?></td>
-                                <td><?php echo $piutang ?></td>
                                 <td><?php echo $p->jml_bayar ?></td>
                             </tr>
                         <?php 
